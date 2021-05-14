@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <meta name="keywords"
+          content="iccv, workshop, computer vision, computer graphics, visual learning, simulation environments, robotics, machine learning, natural language processing, reinforcement learning">
+
+    <link rel="shortcut icon" href="/2021/img/icon.jpg">
+
+
+    <title>Urban3D: The 1st Challenge on Large Scale Point-cloud Analysis for Urban Scenes Understanding</title>
+    <meta name="description" content="Gaze Estimation and Prediction in the Wild Workshop Series ---">
+
+    <!--Open Graph Related Stuff-->
+    <meta property="og:title" content="Challenge on Large Scale Point-cloud Analysis for Urban Scenes Understanding"/>
+    <meta property="og:url" content="https://gazeworkshop.github.io/2021"/>
+    <meta property="og:description" content="Gaze Estimation and Prediction in the Wild Workshop Series ---"/>
+    <meta property="og:site_name" content="Gaze Estimation and Prediction in the Wild"/>
+    <meta property="og:image" content=""/>
+    <meta property="og:image:url" content=""/>
+
+    <!--Twitter Card Stuff-->
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="Gaze Estimation and Prediction in the Wild"/>
+    <meta name="twitter:image" content="https://gazeworkshop.github.io/2021/img/icon.jpg">
+    <meta name="twitter:url" content="https://gazeworkshop.github.io/2021"/>
+    <meta name="twitter:description" content="Gaze Estimation and Prediction in the Wild Workshop Series ---"/>
+
+    <!-- CSS  -->
+    <link rel="stylesheet" type="text/css" href="./2021/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./2021/css/main.css?2" media="screen,projection">
+
+    <!-- Font Awesome -->
+    <script src="/static/js/jquery.min.js?1"></script>
+    <script src="https://kit.fontawesome.com/ff6e9b10da.js" crossorigin="anonymous"></script>
+    <script src="/static/js/moment.min.js?1"></script>
+    <script src="/static/js/main.js?2"></script>
+</head>
+
+<body>
+
+<style>
+    #year-header {
+        border: none;
+        display: block;
+        width: 100%;
+        background: #eaebea;
+    }
+
+    #year-header ul {
+        display: block;
+        margin: 0;
+        margin-block-start: 0;
+        margin-block-end: 0;
+        padding-inline-start: 0;
+        text-align: center;
+    }
+
+    #year-header ul li {
+        display: inline-block;
+        list-style: none;
+    }
+
+    #year-header ul li a {
+        display: block;
+        text-decoration: none;
+        border: none;
+
+        padding: 0 1.7em;
+        height: 3.2em;
+        line-height: 3.2em;
+        vertical-align: middle;
+
+        font-family: Helvetica, Arial, sans-serif;
+        font-size: 1.0em;
+        font-weight: 400;
+        color: #444;
+    }
+
+    @media (max-width: 1000px) {
+        #year-header ul li a {
+            font-size: 0.8em;
+        }
+    }
+
+    #year-header ul li a:hover {
+        background: #dddedd;
+        color: #000;
+        transition: .5s;
+    }
+</style>
+
+<div class="navbar navbar-default sticky-top">
+    <div class="container">
+
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/"></a>
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+
+
+        <div class="navbar-collapse collapse" id="navbar-main">
+            <ul class="nav navbar-nav">
+                <!--<li><a href="#intro">Introduction</a></li>-->
+                <!--<li><a href="#calls">Call for Contributions</a></li>-->
+                <li><a href="#dates">Important Dates</a></li>
+                <!--<li><a href="#schedule">Schedule</a></li>-->
+                <li><a href="#speakers">Invited Speakers</a></li>
+                <!--<li><a href="#awards">Awards</a></li>-->
+                <li><a href="#accepted">Accepted Papers</a></li>
+                <li><a href="#organizers">Organizers</a></li>
+                <!--<li><a href="#programcommittee">Program Committee</a></li>-->
+                <li><a href="#sponsors">Sponsors</a></li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="page-content">
+        <p><br/></p>
+        <div class="row">
+            <div class="col-xs-12">
+                <img class="img-fluid" src="2021/img/banner.jpg"/>
+                <small style="float:right;margin-top:1mm;margin-right:5mm;">Image credit to <a
+                        href="https://pixabay.com/users/danielhannah-8058574" target="_blank">Daniel Hannah</a></small>
+                <!--<center>Date TBD, half-day</center>-->
+            </div>
+        </div>
+        <p><br/></p>
+
+        <div class="row">
+            <div class="col-xs-12"><a class="anchor" id="intro"></a>
+                <h2>Introduction</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <p>
+                    The 3D world around us is composed of a rich variety of objects: <i> buildings, bridges, trees,
+                    cars,
+                    rivers,</i> and so forth, each with distinct appearance, morphology, and function. Giving machines
+                    the
+                    ability to precisely segment and label these diverse objects is of key importance to allow them to
+                    interact competently within our physical world, for applications such as scene-level robot
+                    navigation, autonomous driving, and even large-scale urban 3D modeling, which is critical for the
+                    future of smart city planning and management.
+                </p>
+                <p>
+                    Over the past years, remarkable advances in techniques for 3D point cloud understanding have greatly
+                    boosted performance. Although these approaches achieve impressive results for object recognition
+                    and semantic segmentation, almost all of them are limited to extremely small 3D point clouds, and
+                    are difficult to be directly extended to large-scale point clouds.
+                </p>
+                <p>
+                    <b>The 1st Challenge on Large Scale Point-cloud Analysis for Urban Scenes Understanding
+                        (Urban3D) </b> at <a
+                        href="http://iccv2021.thecvf.com/home" target="_blank">ICCV 2021</a> aims to establish a new
+                    benchmark for 3D semantic segmentation on urban-scale point clouds. In particular, we prime the
+                    challenge with a dataset, called <b><a
+                        href="http://point-cloud-analysis.cs.ox.ac.uk/" target="_blank">SensatUrban</a></b>, which
+                    consists of large-scale subsections of multiple
+                    urban areas in the UK. With the high quality of per-point annotations and the diverse distribution
+                    of semantic categories, the SensatUrban dataset allows us to explore a number of key research
+                    problems and directions for 3D semantic learning in this workshop. We aspire to highlight the
+                    challenges faced in 3D semantic segmentation on extremely large and dense point clouds of urban
+                    environments, sparking innovation in applications such as smart cities, digital twins, autonomous
+                    vehicles, automated asset manage ment of large national infrastructures, and intelligent
+                    construction sites. We hope that our dataset, and this workshop could inspire the community to
+                    explore the next level of 3D semantic learning. Specifically, We encourage researchers from a wide
+                    range of background to participate in our challenge, the topics including but not limited to:
+                </p>
+                <ul>
+                    <li>Semantic segmentation of large-scale 3D point clouds.
+                    </li>
+                    <li>Instance segmentation of 3D point clouds.
+                    </li>
+                    <li>Weakly supervised learning in 3D point clouds analysis.</li>
+                    <li>Learning from imbalanced 3D point clouds.
+                    </li>
+                    <li>3D point cloud acquisition & visualization.</li>
+                    <li>3D object detection & reconstruction.</li>
+                    <li>Semi-/weak-/un-/self- supervised learning methods for 3D point clouds.
+                    </li>
+                </ul>
+                We will be hosting 2 invited speakers and holding 2 parallel challenges (Fully-supervised & Weakly
+                supervised), and 1 panel discussion session for the topic of point cloud semantic segmentation. More
+                information will be provided as soon as possible.
+            </div>
+        </div>
+        <p><br/></p>
+
+        <div class="row">
+            <div class="col-xs-12 panel-group"><a class="anchor" id="calls"></a>
+                <h2>Call for Contributions</h2>
+                <!--                <br/>-->
+                <!--                <div class="panel panel-default">-->
+                <!--                    <div class="panel-heading" data-toggle="collapse" data-parent="#call" href="#call-papers"-->
+                <!--                         style="cursor:pointer;">-->
+                <!--                        <h3 style="margin:0;">Full Workshop Papers</h3>-->
+                <!--                    </div>-->
+                <!--                    <div id="call-papers" class="panel-collapse collapse" data-parent="#call">-->
+                <!--                        <div class="panel-body">-->
+                <!--                            <p>-->
+                <!--                                <span style="font-weight:500;">Submission:</span> We invite authors to submit-->
+                <!--                                unpublished papers (8-page <a-->
+                <!--                                    href="http://iccv2021.thecvf.com/node/4#submission-guidelines" target="_blank">ICCV-->
+                <!--                                format</a>) to our workshop, to be presented at a poster session upon acceptance. All-->
+                <!--                                submissions will go through a double-blind review process. All contributions must be-->
+                <!--                                submitted (along with supplementary materials, if any) at-->
+                <!--                                <a href="https://cmt3.research.microsoft.com/GAZE2021/Submission/Index" target="_blank"-->
+                <!--                                   title="CMT Submission System for GAZE 2021">this CMT link</a>.-->
+                <!--                            </p>-->
+                <!--                            <p>-->
+                <!--                                Accepted papers will be published in the official ICCV Workshops proceedings and the-->
+                <!--                                Computer Vision Foundation (CVF) Open Access archive.-->
+                <!--                            </p>-->
+                <!--                            <p>-->
+                <!--                                <span style="font-weight:500;">Note:</span> Authors of previously rejected main-->
+                <!--                                conference submissions are also welcome to submit their work to our workshop. When doing-->
+                <!--                                so, you must submit the previous reviewers' comments (named as <code>previous_reviews.pdf</code>)-->
+                <!--                                and a letter of changes (named as <code>letter_of_changes.pdf</code>) as part of your-->
+                <!--                                supplementary materials to clearly demonstrate the changes made to address the comments-->
+                <!--                                made by previous reviewers.-->
+                <!--                                &lt;!&ndash;Due to potential clashes with the main conference reviewing schedule, we will accept simultaneous submissions to the ICCV main conference and GAZE Workshop. Simultaneous submissions are otherwise disallowed.&ndash;&gt;-->
+                <!--                            </p>-->
+                <!--                        </div>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+                <!--                <br/>-->
+                <!--                &lt;!&ndash;-->
+                <!--                <div class="panel panel-default">-->
+                <!--                  <div class="panel-heading" data-toggle="collapse" data-parent="#call" href="#call-ea" style="cursor:pointer;">-->
+                <!--                    <h3 style="margin:0;">Extended Abstracts</h3>-->
+                <!--                  </div>-->
+                <!--                  <div id="call-ea" class="panel-collapse collapse in" data-parent="#call">-->
+                <!--                    <div class="panel-body">-->
+                <!--                      <p>-->
+                <!--                        In addition to regular papers, we also invite extended abstracts of ongoing or published work (<i>e.g.</i> related papers on ECCV main track). The extended abstracts will not be published or made available to the public (we will only list titles on our website) but will rather be presented during our poster session. We see this as an opportunity for authors to promote their work to an interested audience to gather valuable feedback.-->
+                <!--                      </p>-->
+                <!--                  <p>-->
+                <!--                    Further details on how this poster session will occur online, is to be decided. In general, we will be following the main ECCV conference guidelines and organization in organizing the presentation of all posters.-->
+                <!--                      </p>-->
+                <!--                      <p>Extended abstracts are limited to six pages and must be created using the <a href="https://eccv2020.eu/author-instructions/" target="_blank">official ECCV format</a>. The submission must be sent to <a href="mailto:openeyes.workshop@gmail.com">openeyes.workshop@gmail.com</a> by the deadline (July 17th).-->
+                <!--                      </p>-->
+                <!--                      <p>-->
+                <!--                        We will evaluate and notify authors of acceptance as soon as possible (evaluation on a rolling basis until the deadline) after receiving their extended abstract submission.-->
+                <!--                      </p>-->
+                <!--                    </div>-->
+                <!--                  </div>-->
+                <!--                </div>-->
+                <!--                <br>-->
+                <!--                &ndash;&gt;-->
+                <div class="panel panel-default">
+                    <div class="panel-heading" data-toggle="collapse" data-parent="#call" href="#call-challenge"
+                         style="cursor:pointer;">
+                        <h3 style="margin:0;">Urban3D Challenges@ICCV'2021</h3>
+                    </div>
+                    <div id="call-challenge" class="panel-collapse collapse in" data-parent="#call">
+                        <div class="panel-body">
+                            <p>
+                                The Urban3D Challenges are hosted on Codalab, and can be found at:
+                            </p>
+                            <ul>
+                                <li>SensatUrban dataset: <a href="http://point-cloud-analysis.cs.ox.ac.uk/">http://point-cloud-analysis.cs.ox.ac.uk/</a>
+                                </li>
+                                <li>SensatUrban API: <a href="https://github.com/QingyongHu/SensatUrban">https://github.com/QingyongHu/SensatUrban</a>
+                                </li>
+                                <li>Urban3D Challenge: <a href="https://competitions.codalab.org/competitions/31519">https://competitions.codalab.org/competitions/31519</a>
+                                </li>
+                            </ul>
+                            <p>
+                                More information on the respective challenges can be found on their pages.
+                            </p>
+                            <br/>
+                            <p>
+                                We are thankful to our sponsors for providing the following prizes:
+                            <table style="width: 100%;">
+                                <colgroup>
+                                    <col span="1" style="width: 30%;"/>
+                                    <col span="1" style="width: 55%;"/>
+                                    <col span="1" style="width: 15%;"/>
+                                </colgroup>
+                                <tbody>
+                                <tr>
+                                    <td><b>ETH-XGaze Challenge Winner</b></td>
+                                    <td>USD 500</td>
+                                    <td><small>courtesy of </small><img width="50" src="2021/img/google.png"/></td>
+                                </tr>
+                                <tr>
+                                    <td><b>EVE Challenge Winner</b></td>
+                                    <td>Tobii Eye Tracker 5</td>
+                                    <td><small>courtesy of </small><img width="50" src="2021/img/tobii.jpg"/></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p><br/></p>
+
+        <div class="row">
+            <div class="col-xs-12"><a class="anchor" id="dates"></a>
+                <h2>Important Dates</h2>
+                <br/>
+                <table class="table table-striped">
+                    <tbody>
+                    <tr>
+                        <td>WorKshop Proposal Accepted</td>
+                        <td>April 12, 2021</td>
+                    </tr>
+                    <tr>
+                        <td>Competition Starts</td>
+                        <td>May 12, 2021</td>
+                    </tr>
+                    <tr>
+                        <td>Competition Ends</td>
+                        <td>September 3, 2021 (23:59 Pacific time)</td>
+                    </tr>
+                    <tr>
+                        <td>Notification to Participants</td>
+                        <td>September 7, 2021</td>
+                    </tr>
+                    <tr>
+                        <td>Finalized Workshop Program (Half Day)</td>
+                        <td>October 11, 2021</td>
+                    </tr>
+                    <tr id="schedule">
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <p><br/></p>
+
+        <div class="row">
+            <div class="col-xs-12"><a class="anchor" id="speakers"></a>
+                <h2>Invited Keynote Speakers</h2>
+                <br/>
+                <div class="row speaker">
+                    <div class="col-sm-3 speaker-pic">
+                        <a href="https://igp.ethz.ch/personen/person-detail.html?persid=143986/">
+                            <img class="people-pic" src="./2021/img/people/Konrad.png"/>
+                        </a>
+                        <div class="people-name">
+                            <a href="https://igp.ethz.ch/personen/person-detail.html?persid=143986/">Schindler
+                                Konrad</a>
+                            <h6>ETH Zürich</h6>
+                        </div>
+                    </div>
+                    <div class="col-sm-9">
+                        <!--<h3>Eye Tracking: Ready to deliver the promises?</h3><br />-->
+                        <!--<b>Abstract</b><p class="speaker-abstract"></p>-->
+                        <div class="panel panel-default">
+                            <div class="panel-heading" data-toggle="collapse" href="#jr-bio"
+                                 style="cursor:pointer;text-align:center">
+                                <b>Biography <span style="font-weight:normal">(click to expand/collapse)</span></b>
+                            </div>
+                            <div id="jr-bio" class="panel-collapse collapse in">
+                                <div class="panel-body">
+                                    <p class="speaker-bio">
+                                        Schindler Konrad received the Diplomingenieur (M.Tech.) degree from Vienna
+                                        University of Technology, Vienna, Austria, in 1999, and the Ph.D. degree from
+                                        Graz University of Technology, Graz, Austria, in 2003. He was a Photogrammetric
+                                        Engineer in the private industry and held researcher positions at Graz
+                                        University of Technology, Monash University, Melbourne, VIC, Australia, and ETH
+                                        Zurich, Zurich, Switzerland. He was an Assistant Professor of Image
+                                        Understanding with TU Darmstadt, Darmstadt, Germany, in 2009. Since 2010, he has
+                                        been a Tenured Professor of Photogrammetry and Remote Sensing with ETH Zurich.
+                                        His research interests include computer vision, photogrammetry, and remote
+                                        sensing. He is the owner of the <a href="https://www.semantic3d.net/">Semantic3D.net</a>
+                                        benchmark.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row speaker">
+                    <div class="col-sm-3 speaker-pic">
+                        <a href="http://www.cs.toronto.edu/~urtasun/">
+                            <img class="people-pic" src="./2021/img/people/Raquel.jpg"/>
+                        </a>
+                        <div class="people-name">
+                            <a href="http://www.cs.toronto.edu/~urtasun/">Raquel Urtasun
+                            </a>
+                            <h6>University of Toronto</h6>
+                        </div>
+                    </div>
+                    <div class="col-sm-9">
+                        <!--<h3>Eye Tracking: Ready to deliver the promises?</h3><br />-->
+                        <!--<b>Abstract</b><p class="speaker-abstract"></p>-->
+                        <div class="panel panel-default">
+                            <div class="panel-heading" data-toggle="collapse" href="#jr-bio"
+                                 style="cursor:pointer;text-align:center">
+                                <b>Biography <span style="font-weight:normal">(click to expand/collapse)</span></b>
+                            </div>
+                            <div id="jr-bio" class="panel-collapse collapse in">
+                                <div class="panel-body">
+                                    <p class="speaker-bio">
+                                        Raquel Urtasun is Uber ATG Chief Scientist and the Head of Uber ATG Toronto. She
+                                        is also a Full Professor in the Department of Computer Science at the University
+                                        of Toronto, a Canada Research Chair in Machine Learning and Computer Vision and
+                                        a co-founder
+                                        of the Vector Institute for AI. Her research interests include machine learning,
+                                        computer vision, robotics, AI and remote sensing. Her lab was selected as an
+                                        NVIDIA NVAIL lab. She is a recipient of an NSERC EWR Steacie Award, an NVIDIA
+                                        Pioneers of AI Award, a Ministry of Education and Innovation Early Researcher
+                                        Award, three Google Faculty Research Awards, an Amazon Faculty Research Award,
+                                        two NVIDIA Pioneer Research Awards, a Connaught New Researcher Award, a Fallona
+                                        Family Research Award and two Best Paper Runner up Prize awarded at CVPR in 2013
+                                        and 2017 respectively. She was also named Chatelaine 2018 Woman of the year, and
+                                        2018 Toronto's top influencers by Adweek magazine.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+        <div class="row">
+            <div class="col-xs-12"><a class="anchor" id="organizers"></a>
+                <h2>Organizers</h2>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-1"></div>
+            <div class="col-xs-2">
+                <a href="https://qingyonghu.github.io/">
+                    <img class="people-pic" src="2021/img/people/Qingyong.jpg"/>
+                </a>
+                <div class="people-name">
+                    <a href="https://qingyonghu.github.io/">Qingyong Hu</a>
+                    <h6>University of Oxford</h6>
+                </div>
+            </div>
+            <div class="col-xs-2">
+                <a href="https://yang7879.github.io/">
+                    <img class="people-pic" src="2021/img/people/BoYang.jpg"/>
+                </a>
+                <div class="people-name">
+                    <a href="https://yang7879.github.io/">Bo Yang</a>
+                    <h6>The Hong Kong Polytechnic University</h6>
+                </div>
+            </div>
+            <div class="col-xs-2">
+                <a href="https://uk.linkedin.com/in/fakharkhalid">
+                    <img class="people-pic" src="2021/img/people/Khalid_7.jpg"/>
+                </a>
+                <div class="people-name">
+                    <a href="https://uk.linkedin.com/in/fakharkhalid">Sheikh Khalid</a>
+                    <h6>Sensat Inc.</h6>
+                </div>
+            </div>
+            <div class="col-xs-2">
+                <a href="http://www.ronnieclark.co.uk/">
+                    <img class="people-pic" src="2021/img/people/Ronnie.jpg"/>
+                </a>
+                <div class="people-name">
+                    <a href="http://www.ronnieclark.co.uk/">Ronarld Clark</a>
+                    <h6>Imperial College London</h6>
+                </div>
+            </div>
+            <div class="col-xs-2">
+                <a href="https://www.ncl.ac.uk/engineering/staff/profile/wenxiao.html">
+                    <img class="people-pic" src="2021/img/people/wen.png"/>
+                </a>
+                <div class="people-name">
+                    <a href="https://www.ncl.ac.uk/engineering/staff/profile/wenxiao.html">Wen Xiao</a>
+                    <h6>Newcastle University</h6>
+                </div>
+            </div>
+            <div class="col-xs-1"></div>
+        </div>
+        <p><br/></p>
+        <div class="row">
+            <div class="col-xs-1"></div>
+            <div class="col-xs-2">
+                <a href="http://yulanguo.me/">
+                    <img class="people-pic" src="2021/img/people/Yulan.jpg"/>
+                </a>
+                <div class="people-name">
+                    <a href="http://yulanguo.me/">Yulan Guo</a>
+                    <h6>National University of Defense Technology</h6>
+                </div>
+            </div>
+            <div class="col-xs-2">
+                <a href="https://www.cs.bham.ac.uk/~leonarda/">
+                    <img class="people-pic" src="2021/img/people/al.jpg"/>
+                </a>
+                <div class="people-name">
+                    <a href="https://www.cs.bham.ac.uk/~leonarda/">Aleš Leonardis</a>
+                    <h6>University of Birmingham</h6>
+                </div>
+            </div>
+            <div class="col-xs-2">
+                <a href="https://www.cs.ox.ac.uk/people/niki.trigoni/">
+                    <img class="people-pic" src="2021/img/people/Niki.png"/>
+                </a>
+                <div class="people-name">
+                    <a href="https://www.cs.ox.ac.uk/people/niki.trigoni/">Niki Trigoni</a>
+                    <h6>University of Oxford</h6>
+                </div>
+            </div>
+            <div class="col-xs-2">
+                <a href="https://www.cs.ox.ac.uk/people/andrew.markham/">
+                    <img class="people-pic" src="2021/img/people/Andrew_markham.png"/>
+                </a>
+                <div class="people-name">
+                    <a href="https://www.cs.ox.ac.uk/people/andrew.markham/">Andrew Markham</a>
+                    <h6>University of Oxford</h6>
+                </div>
+            </div>
+        </div>
+        <p><br/></p>
+
+        <div class="row">
+            <div class="col-xs-12"><a class="anchor" id="sponsors"></a>
+                <h2>Workshop sponsored by:</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-4 sponsor">
+                <a href="https://www.nvidia.com/"><img src="2021/img/nvidia.jpg"/></a>
+            </div>
+            <div class="col-xs-4 sponsor">
+                <a href="https://www.tobii.com/"><img src="2021/img/tobii.jpg"/></a>
+            </div>
+            <div class="col-xs-4 sponsor">
+                <a href="https://www.google.com/"><img src="2021/img/google.png"/></a>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+<hr>
+<div class="section text-gray" id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12" style="text-align:right;">
+                <small>&copy; 2021 Seonwook Park.
+                    Template by <a href=" visualdialog.org" class="external"> visualdialog.org</a>.</small>
+            </div>
+            <br><br>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+</body>
+</html>
