@@ -1,0 +1,1383 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <meta name="keywords"
+          content="iccv, workshop, computer vision, computer graphics, visual learning, simulation environments, robotics, machine learning, natural language processing, reinforcement learning">
+
+    <link rel="shortcut icon" href="2023/img/website_logo2022.png">
+
+    <!-- Google Fonts for Participating Institutions section -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <title>Urban3D: The 3rd Challenge on Large Scale Point-cloud Analysis for Urban Scenes Understanding</title>
+    <meta name="description"
+          content="Urban3D: The 3rd Challenge on Large Scale Point-cloud Analysis for Urban Scenes Understanding ---">
+
+    <!--Open Graph Related Stuff-->
+    <meta property="og:title" content="Challenge on Large Scale Point-cloud Analysis for Urban Scenes Understanding"/>
+    <meta property="og:url" content="https://urban3dchallenge.github.io/"/>
+    <meta property="og:description"
+          content="Urban3D: The 3rd Challenge on Large Scale Point-cloud Analysis for Urban Scenes Understanding ---"/>
+    <meta property="og:site_name"
+          content="Urban3D: The 3rd Challenge on Large Scale Point-cloud Analysis for Urban Scenes Understanding"/>
+    <meta property="og:image" content=""/>
+    <meta property="og:image:url" content=""/>
+
+    <!--Twitter Card Stuff-->
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title"
+          content="Urban3D: The 3rd Challenge on Large Scale Point-cloud Analysis for Urban Scenes Understanding"/>
+    <meta name="twitter:image" content="https://github.com/Urban3DChallenge/2023/img/website_logo2022.png">
+    <meta name="twitter:url" content="urban3dchallenge.github.io"/>
+    <meta name="twitter:description"
+          content="Urban3D: The 3rd Challenge on Large Scale Point-cloud Analysis for Urban Scenes Understanding ---"/>
+
+    <!-- CSS  -->
+    <link rel="stylesheet" type="text/css" href="./2023/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./2023/css/main.css?2" media="screen,projection">
+
+    <!-- Font Awesome -->
+    <script src="/static/js/jquery.min.js?1"></script>
+    <script src="https://kit.fontawesome.com/ff6e9b10da.js" crossorigin="anonymous"></script>
+    <script src="/static/js/moment.min.js?1"></script>
+    <script src="/static/js/main.js?2"></script>
+</head>
+
+<body>
+
+<style>
+    #year-header {
+        border: none;
+        display: block;
+        width: 100%;
+        background: #eaebea;
+    }
+
+    #year-header ul {
+        display: block;
+        margin: 0;
+        margin-block-start: 0;
+        margin-block-end: 0;
+        padding-inline-start: 0;
+        text-align: center;
+    }
+
+    #year-header ul li {
+        display: inline-block;
+        list-style: none;
+    }
+
+    #year-header ul li a {
+        display: block;
+        text-decoration: none;
+        border: none;
+
+        padding: 0 1.7em;
+        height: 3.2em;
+        line-height: 3.2em;
+        vertical-align: middle;
+
+        font-family: Helvetica, Arial, sans-serif;
+        font-size: 1.0em;
+        font-weight: 400;
+        color: #444;
+    }
+
+    @media (max-width: 1000px) {
+        #year-header ul li a {
+            font-size: 0.8em;
+        }
+    }
+
+    #year-header ul li a:hover {
+        background: #dddedd;
+        color: #000;
+        transition: .5s;
+    }
+
+  /* ── Participating Institutions Section ── */
+  *, *::before, *::after { box-sizing: border-box; }
+
+  .u3d-institutions {
+    width: 100%;
+    padding: 64px 0 72px;
+    background: #F7F8FA;
+    border-top: 1px solid #E4E7EC;
+    border-bottom: 1px solid #E4E7EC;
+    font-family: 'DM Sans', sans-serif;
+    overflow: hidden;
+  }
+
+  .u3d-header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 0 24px;
+  }
+
+  .u3d-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #5B7FDE;
+    margin-bottom: 12px;
+  }
+
+  .u3d-eyebrow::before,
+  .u3d-eyebrow::after {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: #5B7FDE;
+    opacity: 0.5;
+  }
+
+  .u3d-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 26px;
+    font-weight: 600;
+    color: #111827;
+    letter-spacing: -0.02em;
+    margin-bottom: 10px;
+  }
+
+  .u3d-subtitle {
+    font-size: 15px;
+    color: #6B7280;
+    font-weight: 300;
+  }
+
+  .u3d-subtitle strong {
+    font-weight: 500;
+    color: #374151;
+  }
+
+  .u3d-track-wrap {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .u3d-track-wrap::before,
+  .u3d-track-wrap::after {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 80px;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .u3d-track-wrap::before { left: 0;  background: linear-gradient(to right, #F7F8FA, transparent); }
+  .u3d-track-wrap::after  { right: 0; background: linear-gradient(to left,  #F7F8FA, transparent); }
+
+  .u3d-track {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: max-content;
+    padding: 6px 0;
+  }
+
+  .u3d-track.row1 { animation: scrollLeft  55s linear infinite; }
+  .u3d-track.row2 { animation: scrollRight 45s linear infinite; margin-top: 10px; }
+
+  .u3d-track:hover { animation-play-state: paused; }
+
+  @keyframes scrollLeft  { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @keyframes scrollRight { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 14px 7px 10px;
+    background: #fff;
+    border: 1px solid #E4E7EC;
+    border-radius: 100px;
+    white-space: nowrap;
+    cursor: default;
+    transition: border-color 0.18s, box-shadow 0.18s, transform 0.18s;
+    flex-shrink: 0;
+  }
+  .chip:hover {
+    border-color: #C7D2FE;
+    box-shadow: 0 2px 12px rgba(91,127,222,0.12);
+    transform: translateY(-1px);
+  }
+
+  .chip-icon {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 600;
+    flex-shrink: 0;
+    letter-spacing: -0.02em;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
+  .chip-name {
+    font-size: 13px;
+    font-weight: 400;
+    color: #374151;
+    letter-spacing: -0.01em;
+  }
+
+  .chip-region {
+    font-size: 11px;
+    color: #9CA3AF;
+    margin-left: 1px;
+  }
+
+  .ic-blue   { background: #EEF2FF; color: #4F46E5; }
+  .ic-teal   { background: #ECFDF5; color: #059669; }
+  .ic-amber  { background: #FFFBEB; color: #D97706; }
+  .ic-red    { background: #FEF2F2; color: #DC2626; }
+  .ic-purple { background: #F5F3FF; color: #7C3AED; }
+  .ic-slate  { background: #F1F5F9; color: #475569; }
+  .ic-rose   { background: #FFF1F2; color: #E11D48; }
+  .ic-cyan   { background: #ECFEFF; color: #0891B2; }
+  .ic-indigo { background: #EEF2FF; color: #4338CA; }
+  .ic-green  { background: #F0FDF4; color: #16A34A; }
+
+  .u3d-stats {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 40px;
+    padding: 0 24px;
+    flex-wrap: wrap;
+  }
+
+  .u3d-stat {
+    text-align: center;
+  }
+
+  .u3d-stat-n {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: #111827;
+    letter-spacing: -0.03em;
+  }
+
+  .u3d-stat-l {
+    font-size: 13px;
+    color: #9CA3AF;
+    margin-top: 2px;
+    font-weight: 300;
+  }
+
+  .u3d-stat-sep {
+    width: 1px;
+    height: 36px;
+    background: #E4E7EC;
+    align-self: center;
+  }
+</style>
+
+<div class="navbar navbar-default sticky-top">
+    <div class="container">
+
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/"></a>
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+
+
+        <div class="navbar-collapse collapse" id="navbar-main">
+            <ul class="nav navbar-nav">
+                <li><a href="#intro">Introduction</a></li>
+                <li><a href="#calls">Call for Contributions</a></li>
+                <li><a href="#dates">Important Dates</a></li>
+                <!-- <li><a href="#schedule">Schedule</a></li> -->
+                <li><a href="#speakers">Invited Speakers</a></li>
+                <!-- <li><a href="#Awards">Awards</a></li> -->
+                <li><a href="#organizers">Organizers</a></li>
+                <li><a href="#sponsors">Sponsors</a></li>
+
+                <li><a href="#sponsors">Previous</a></li>
+
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="page-content">
+        <p><br/></p>
+        <div class="row">
+            <div class="col-xs-12">
+                <img class="img-fluid" src="2023/img/Teaser.png"/>
+
+            </div>
+        </div>
+        <p><br/></p>
+
+        <div class="row">
+            <div class="col-xs-12"><a class="anchor" id="intro"></a>
+                <h2>Introduction</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <p>
+                    The 3D world around us is composed of a rich variety of objects: <i> buildings, bridges, trees,
+                    cars,
+                    rivers,</i> and so forth, each with distinct appearance, morphology, and function. Giving machines
+                    the
+                    ability to precisely segment and label these diverse objects is of key importance to allow them to
+                    interact competently within our physical world, for applications such as scene-level robot
+                    navigation, autonomous driving, and even large-scale urban 3D modeling, which is critical for the
+                    future of smart city planning and management.
+                </p>
+                <p>
+                    Over the past years, remarkable advances in techniques for 3D point cloud understanding have greatly
+                    boosted performance. Although these approaches achieve impressive results for object recognition
+                    and semantic segmentation, almost all of them are limited to extremely small 3D point clouds, and
+                    are difficult to be directly extended to large-scale point clouds. 
+			<font color="red"><b><a
+                        href="http://live.bilibili.com/23697730" target="_blank">[Bilibili Live]</a></b></font>
+			<font color="red"><b><a
+                        href="https://www.youtube.com/watch?v=9TJUuXU_fnI" target="_blank">[YouTube Live]</a></b></font>
+
+
+                </p>
+                <p>
+
+                    <b>The 3rd Challenge on Large Scale Point-cloud Analysis for Urban Scenes Understanding
+                        (Urban3D) </b> at <a
+                        href="https://iccv2023.thecvf.com/" target="_blank">ICCV 2023</a> aims to establish new
+                    benchmarks for 3D semantic and instance segmentation on urban-scale point clouds. In particular, we prime the
+                    challenge with both <b><a
+                        href="http://point-cloud-analysis.cs.ox.ac.uk/" target="_blank">SensatUrban</a></b> and <b><a
+                        href="https://www.stpls3d.com//" target="_blank">STPLS3D</a></b> datasets. SensatUrban consists of large-scale subsections of multiple
+                    urban areas in the UK. With the high quality of per-point annotations and the diverse distribution
+                    of semantic categories. STPLS3D is composed of both real-world and synthetic environments which cover more than 17 km<sup>2</sup> of the city landscape in the U.S. with up to 18 fine-grained semantic classes and 14 instance classes.  
+                    These two datasets are complementary to each other and allow us to explore a number of key research
+                    problems and directions for 3D semantic and instance learning in this workshop. We aspire to highlight the
+                    challenges faced in 3D segmentation on extremely large and dense point clouds of urban
+                    environments, sparking innovation in applications such as smart cities, digital twins, autonomous
+                    vehicles, automated asset management of large national infrastructures, and intelligent
+                    construction sites. We hope that our datasets, and this workshop could inspire the community to
+                    explore the next level of 3D learning. Specifically, We encourage researchers from a wide
+                    range of background to participate in our challenge, the topics including but not limited to:
+                </p>
+                <ul>
+                    <li>Semantic segmentation of large-scale 3D point clouds.
+                    </li>
+                    <li>Instance segmentation of 3D point clouds.
+                    </li>
+                    <li>Weakly (self) supervised learning in 3D point clouds analysis.</li>
+                    <li>Domain adaptation of heterogeneous 3D point clouds.</li>
+                    <li>Learning from imbalanced 3D point clouds.</li>
+                    <li>3D point cloud acquisition & visualization.</li>
+                    <li>3D object detection & reconstruction.</li>
+                </ul>
+                We will be hosting 3 invited speakers and holding 2 parallel challenges (i.e., semantic and instance segmentation), and 1 panel discussion session for the topic of point cloud segmentation. More information will be provided as soon as possible.
+            </div>
+        </div>
+        <p><br/></p>
+
+        <div class="row">
+            <div class="col-xs-12 panel-group"><a class="anchor" id="calls"></a>
+                <h2>Call for Contributions</h2>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading" data-toggle="collapse" data-parent="#call" href="#call-challenge"
+                         style="cursor:pointer;">
+                        <h3 style="margin:0;">Urban3D Challenges@ICCV'2023</h3>
+                    </div>
+                    <div id="call-challenge" class="panel-collapse collapse in" data-parent="#call">
+                        <div class="panel-body">
+                            <p>
+                                <b>The Urban3D Challenges are hosted on Codalab, and can be found at:</b>
+                            </p>
+                            <ul>
+                                <b>Track 1:</b> 3D Semantic Segmentation of Urban-scale Point Clouds.
+                                <ul>
+                                    <li><font color="red"><b>Urban3D Challenge</b></font>: <font color="blue"><a href="https://codalab.lisn.upsaclay.fr/competitions/7113">https://codalab.lisn.upsaclay.fr/competitions/7113</a></font>
+                                    </li>
+                                    <li>SensatUrban dataset: <font color="blue"><a href="http://point-cloud-analysis.cs.ox.ac.uk/">http://point-cloud-analysis.cs.ox.ac.uk/</a></font>
+                                    </li>
+                                    <li>SensatUrban API: <font color="blue"><a href="https://github.com/QingyongHu/SensatUrban">https://github.com/QingyongHu/SensatUrban</a></font>
+                                    </li>
+                                </ul>
+                            </ul>
+                            <ul>
+                                <b>Track 2:</b> 3D Instance Segmentation of Urban-scale Point Clouds.
+                                <ul>
+                                    <li><font color="red"><b>STPLS3D Challenge</b></font>: <font color="blue"><a href="https://codalab.lisn.upsaclay.fr/competitions/4646">https://codalab.lisn.upsaclay.fr/competitions/4646</a></font>
+                                    </li>
+                                    <li>STPLS3D dataset: <font color="blue"><a href="https://www.stpls3d.com">https://www.stpls3d.com</a></font>
+                                    </li>
+                                    <li>STPLS3D API: <font color="blue"><a href="https://github.com/meidachen/STPLS3D">https://github.com/meidachen/STPLS3D</a></font>
+                                    </li>
+                                </ul>
+                            </ul>
+
+                            <br/>
+                                <p>
+                                    We are thankful to our sponsor for providing the following prizes. The prize award will be granted to the <b>Top 3</b> individuals and teams for <b>Each Challenge Track</b> on the leaderboard that provide a valid submission.
+                                <table style="width: 100%;">
+                                    <colgroup>
+                                        <col span="1" style="width: 50%;"/>
+                                        <col span="1" style="width: 35%;"/>
+                                        <col span="1" style="width: 15%;"/>
+                                    </colgroup>
+                                    <tbody>
+                                        <tr>
+                                            
+                                            <td><ul><ul><li><b>1st Place:</b></li></ul></ul></td>
+                                            <td>$1,500 USD</td>
+                                            <!-- <td>TBD</td> -->
+                                            <td><small>courtesy of </small><img width="50" src="2023/img/USC_ICT_Logo.png"/></td>
+
+                                        </tr>
+                                        <tr>
+                                            <td><ul><ul><li><b>2nd Place:</b></li></ul></ul></td>
+                                            <td>$1,000 USD</td>
+                                            <!-- <td>TBD</td> -->
+                                            <td><small>courtesy of </small><img width="50" src="2023/img/USC_ICT_Logo.png"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td><ul><ul><li><b>3rd Place:</b></li></ul></ul></td>
+                                            <td>$500 USD</td>
+                                            <!-- <td>TBD</td> -->
+                                            <td><small>courtesy of </small><img width="50" src="2023/img/USC_ICT_Logo.png"/></td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                                </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p><br/></p>
+
+        <div class="row">
+            <div class="col-xs-12"><a class="anchor" id="dates"></a>
+                <h2>Important Dates</h2>
+                <br/>
+                <table class="table table-striped">
+                    <tbody>
+                    <tr>
+                        <td>Workshop Proposal Accepted</td>
+                        <td>March 30, 2023</td>
+                    </tr>
+                    <tr>
+                        <td>Competition Starts</td>
+                        <td>April 1, 2023</td>
+                    </tr>
+                    <tr>
+                        <td>Competition Ends</td>
+                        <td>Sept 27, 2023 (23:59 Pacific time)</td>
+                    </tr>
+                    <tr>
+                        <td>Notification to Participants</td>
+                        <td>Sept 29, 2023</td>
+                    </tr>
+                    <tr>
+                        <td>Finalized Workshop Program (Half Day)</td>
+                        <td>Oct 2, 2023 (9:00-12:00 Paris time)</td>
+                    </tr>
+                    <tr id="schedule">
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <p><br/></p>
+
+        <div class="row">
+            <div class="col-xs-12"><a class="anchor" id="dates"></a>
+                <h2>Preliminary Program Outline</h2>
+                <br/>
+                <table class="table table-striped">
+                    <tbody>
+                    <tr>
+                        <td>09:00-09:10</td>
+                        <td>Welcome Introduction</td>
+                    </tr>
+                    <tr>
+                        <td>09:10-09:40</td>
+                        <td>Invited Talk (Talk 1)</td>
+                    </tr>
+                    <tr>
+                        <td>09:40-10:10</td>
+                        <td>Invited Talk (Talk 2)</td>
+                    </tr>
+                    <tr>
+                        <td>10:10-10:40</td>
+                        <td>Invited Talk (Talk 3)</td>
+                    </tr>
+                    <tr>
+                        <td>11:40-11:00</td>
+                        <td>Coffee break</td>
+                    </tr>
+                    <tr>
+                        <td>11:00-11:15</td>
+                        <td>Winner Talk 1 (Track 1)</td>
+                    </tr>
+                    <tr>
+                        <td>11:15-11:30</td>
+                        <td>Winner Talk 1 (Track 2)</td>
+                    </tr>
+                    <tr>
+                        <td>11:30-11:45</td>
+                        <td>Winner Talk 2 (Track 2)</td>
+                    </tr>
+                    <tr>
+                        <td>11:45-12:00</td>
+                        <td>Closing Remarks</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <p><br/></p>
+
+
+    <div class="row">
+        <div class="col-xs-12"><a class="anchor" id="speakers"></a>
+            <h2>Invited Keynote Speakers</h2>
+            <br/>
+            <div class="row speaker">
+                <div class="col-sm-3 speaker-pic">
+                    <a href="https://www.ucl.ac.uk/bartlett/casa/prof-michael-batty">
+                        <img class="people-pic" src="./2023/img/people/Michael Batty.png"/>
+                    </a>
+                    <div class="people-name">
+                        <a href="https://www.ucl.ac.uk/bartlett/casa/prof-michael-batty">Michael Batty 
+                        </a>
+                        <h6>University College London</h6>
+                    </div>
+                </div>
+                <div class="col-sm-9">
+                    <h3>From 2D to 3D and Back Again Through Digital Twins</h3><br/>
+                    <div class="panel panel-default">
+                        <div class="panel-heading" data-toggle="collapse" href="#jr-bio"
+                             style="cursor:pointer;text-align:center">
+                            <b>Biography <span style="font-weight:normal">(click to expand/collapse)</span></b>
+                        </div>
+                        <div id="jr-bio" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <p class="speaker-bio">
+                                    Michael Batty is Bartlett Professor of Planning at University College London where he is Chair of the Centre for Advanced Spatial Analysis (CASA). He has worked on computer models of cities and their visualisation since the 1970s and has published several books, such as 
+                                    <b>
+                                        <i>Cities and Complexity</i>
+                                    </b>
+                                    (MIT Press, 2005) which won the Alonso Prize of the Regional Science Association in 2011, and most recently 
+                                    <b>
+                                        <i>The New Science of Cities</i>
+                                    </b>
+                                    (MIT Press, 2013). His blogs www.complexcity.info cover the science underpinning the technology of cities and his posts and lectures on big data and smart cities are at www.spatialcomplexity.info . His research group is working on simulating long term structural change and dynamics in cities as well as their visualisation. Prior to his current position, he was Professor of City Planning and Dean at the University of Wales at Cardiff and then Director of the National Center for Geographic Information and Analysis at the State University of New York at Buffalo. He is a Fellow of the British Academy (FBA
+                                    ), the Academy of Social Sciences (FAcSS
+                                    ) and the Royal Society (FRS
+                                    ), was awarded the CBE
+                                    in the Queen’s Birthday Honours in 2004 and the 2013 recipient of the Lauréat Prix International de Géographie Vautrin Lud (generally known as the &nbsp;<span style="font-family: Helvetica; font-size: 12px; background-color: rgb(255, 255, 255);">'Nobel de Géographie')</span>
+                                    . This year 2015 he received the Founders Medal of the Royal Geographical Society for his work on the science of cities. In 2016 he received the Gold Medal of the Royal Town Planning Institute, and the Senior Scholars Award of the Complex Systems Society. He has Honorary Doctorates form the State University of New York and from the University of Leicester.
+                                </p>
+                            </div>
+                            <div class="abstract" data-toggle="collapse" href="#jr-bio"
+                                     style="cursor:pointer;text-align:center">
+                                    <b>Abstract</b>
+                                </div>
+                                    <div class="panel-body">
+                                    <p class="abstract">
+                                        In the fields of architecture and planning, 3D models primarily representing the physical form of buildings and cities, came hard on the heels of computer cartography and 2D mapping. In this paper, we will review how geographic information systems rapidly acquired the ability to simulate urban form in 3D and how these ideas then moved on to incorporate various kinds of virtual reality and virtual worlds as an integral part of this representation. Currently many ideas associated with the metaverse are being developed and the notion of a 3D model as a fairly accurate portrayal of a ‘real’ building to a ‘real’ city is being rapidly relaxed. We review this transition from 2D to 3D and the ways different elements of the city, much being fashioned from data streamed in real time, are being incorporated into such models. We illustrate this evolution with our model of Virtual London (ViLo) and we then contrast this with other models that focus on London but are much more focussed on urban processes than on visual representation. In this sense, the different models focus on the same place and as such they are digital twins of one another. This paper will focus on how very different kinds of models in 2D and 3D relate to one another suggesting that in the future, the idea of many models of the same place being built – many twins of each other – will become the norm as developing such models becomes ever easier to construct and as data for their form becomes ever more available through various kinds of sensing. 
+                                    </p>
+                        </div>
+                    </div>
+                    <div class="panel-heading" data-toggle="collapse" href="#jr-bio"
+                         style="cursor:pointer;text-align:center">
+
+                    </div>
+                </div>
+            </div>
+
+
+                <div class="row speaker">
+                    <div class="col-sm-3 speaker-pic">
+                        <a href="http://www.eng.cam.ac.uk/profiles/ib340">
+                            <img class="people-pic" src="./2023/img/people/Ioannis-Brilakis.jpg"/>
+                        </a>
+                        <div class="people-name">
+                            <a href="http://www.eng.cam.ac.uk/profiles/ib340">Ioannis Brilakis
+                            </a>
+                            <h6>University of Cambridge</h6>
+                        </div>
+                    </div>
+                    <div class="col-sm-9">
+                        <h3>Digital Twinning the Built Environment</h3><br/>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" data-toggle="collapse" href="#jr-bio"
+                                 style="cursor:pointer;text-align:center">
+                                <b>Biography</b>
+                            </div>
+                            <div id="jr-bio" class="panel-collapse collapse in">
+                                <div class="panel-body">
+                                    <p class="speaker-bio">
+                                        Prof Ioannis Brilakis is the Laing O'Rourke Professor of Civil & Information Engineering and the Director of the Construction Information Technology Laboratory at the Division of Civil Engineering of the Department of Engineering at the University of Cambridge. He completed his PhD in Civil Engineering at the University of Illinois, Urbana Champaign in 2005. He then worked as an Assistant Professor at the Departments of Civil and Environmental Engineering, University of Michigan, Ann Arbor (2005-2008) and Georgia Institute of Technology, Atlanta (2008-2012) before moving to Cambridge in 2012 as a Laing O’Rourke Lecturer. He was promoted to Reader in October 2017 and to Professor in 2021. He has also held visiting posts at the Department of Computer Science, Stanford University as a Visiting Associate Professor of Computer Vision (2014) and at the Technical University of Munich as a Visiting Professor, Leverhulme International Fellow (2018-2019), and Hans Fischer Senior Fellow (2019-2023). He is a recipient of the 2022 EC3 Scherer Award, 2022 EC3 Thorpe Medal, 2019 ASCE J. James R. Croes Medal, the 2018 ASCE John O. Bickel Award, the 2013 ASCE Collingwood Prize, the 2012 Georgia Tech Outreach Award, a 2010 NSF CAREER award, and a 2009 ASCE Associate Editor Award. Dr Brilakis is an author of over 200 papers in peer-reviewed journals and conference proceedings, an Associate Editor of the ASCE Computing in Civil Engineering, ASCE Construction Engineering and Management, Elsevier Automation in Construction, and Elsevier Advanced Engineering Informatics Journals, and the lead founder of the European Council on Computing in Construction.
+                                    </p>
+                                    
+                                </div>
+
+                                <div class="abstract" data-toggle="collapse" href="#jr-bio"
+                                         style="cursor:pointer;text-align:center">
+                                        <b>Abstract</b>
+                                    </div>
+                                    <div class="panel-body">
+                                    <p class="abstract">
+                                        Digital Twinning methods can produce a reliable digital record of the built environment and enable owners to reliably protect, monitor and maintain the condition of their asset. The built environment is comprised of large assets that need significant resource investments to design, construct, maintain and operate them. Improving productivity, i.e., efficiency and effectiveness, and creating new, disruptive ways to address existing problems throughout their lifecycle can generate significant performance improvements in cost, time, quality, safety, sustainability, and resilience metrics for all involved parties. Creating and maintaining an up-to-date electronic record of built environment assets in the form of rich Digital Twins can help generate such improvements. This talk introduces research conducted at the University of Cambridge on inexpensive methods for generating object-oriented infrastructure geometry, detecting, and mapping visible defects on the resulting Digital Twin, automatically extracting defect spatial measurements, and sensor and sensor data modelling. The results of these methods are further exploited through their application in design for manufacturing and assembly (DfMA), mixed-reality-enabled mobile inspection, and proactive asset protection from accidental damage.
+                                    </p>
+
+                            </div>
+                        </div>
+                        <div class="panel-heading" data-toggle="collapse" href="#jr-bio"
+                             style="cursor:pointer;text-align:center">
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row speaker">
+                    <div class="col-sm-3 speaker-pic">
+                        <a href="https://www.asg.ed.tum.de/sipeo/team/zhu/">
+                            <img class="people-pic" src="./2023/img/people/Xiaoxiang Zhu.webp"/>
+                        </a>
+                        <div class="people-name">
+                            <a href="https://www.asg.ed.tum.de/sipeo/team/zhu/">Xiaoxiang Zhu
+                            </a>
+                            <h6><a href="https://virtualhumans.mpi-inf.mpg.de/">Technical University of Munich</a></h6>
+                        </div>
+                    </div>
+                    <div class="col-sm-9">
+                        <h3>Towards Global 3D/4D Urban Modeling from Space</h3><br/>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" data-toggle="collapse" href="#jr-bio"
+                                 style="cursor:pointer;text-align:center">
+                                <b>Biography <span style="font-weight:normal">(click to expand/collapse)</span></b>
+                            </div>
+                            <div id="jr-bio" class="panel-collapse collapse in">
+                                <div class="panel-body">
+                                    <p class="speaker-bio">
+                                        Xiao Xiang Zhu is the Chair Professor of Data Science with Earth Observation, Technical University of Munich, and was the Founding Head of the Department “EO Data Science,” Remote Sensing Technology Institute, German Aerospace Center (DLR), Cologne, Germany. She received the master’s (M.Sc.) degree, doctor of engineering (Dr.-Ing.) degree, and “Habilitation” degree in signal processing from Technical University of Munich (TUM), Munich, Germany, in 2008, 2011, and 2013, respectively. She is also the IEEE Fellow. Since 2019, she has been a Co-Coordinator of the Munich Data Science Research School, Munich, and has been the Head of the Helmholtz Artificial Intelligence—Research Field Aeronautics, Space and Transport, Munich. Since 2020, she has been the Director of the International Future Artificial Intelligence (AI) Lab—Artificial Intelligence for Earth Observation (AI4EO): Reasoning, Uncertainties, Ethics and Beyond, Munich. Since 2020, she has also been the Co-Director of the Munich Data Science Institute (MDSI), TUM. Her research interests include remote sensing and Earth observation, signal processing, machine learning, and data science, with their applications in tackling societal grand challenges, e.g., global urbanization, Union Nations’ Sustainable Development Goals (UN’s SDGs), and climate change. 
+                                    </p>
+                                </div>
+                                <div class="abstract" data-toggle="collapse" href="#jr-bio"
+                                     style="cursor:pointer;text-align:center">
+                                    <b>Abstract</b>
+                                </div>
+                                    <div class="panel-body">
+                                    <p class="abstract">
+                                        Geoinformation derived from Earth observation satellite data is indispensable for many scientific, governmental and planning tasks. Geoscience, environmental sciences, sustainable development, resource management, civil security, disaster relief, as well as planning and decision support are just a few examples. This talk will present a series of novel algorithms, both model-based and data-driven, aiming at delivering the world's first global 3D and 4D urban model using earth observation satellite data from multiple sensors.
+                                    </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+        <div class="row">
+            <div class="col-xs-12 panel-group"><a class="anchor" id="Awards"></a>
+                <h2>Awards</h2>
+                <div class="panel panel-default">
+                    <div class="panel-heading" data-toggle="collapse" data-parent="#call" href="#call-challenge"
+                         style="cursor:pointer;">
+                        <h3 style="margin:0;"><span class="award-sponsor">Winner Award sponsored by <a href="https://ict.usc.edu/"
+                                                                        target="_blank"><img
+                                    src="2023/img/USC_ICT_Logo.png"/></a>
+    </span></h3>
+                    </div>
+                    <div id="call-challenge" class="panel-collapse collapse in" data-parent="#call">
+                        <div class="panel-body">
+                            <br/>
+                            <b>Track 1:</b> 3D Semantic Segmentation of Urban-scale Point Clouds.
+                            <ul>
+                                <br/>
+                                <li><font style="color:#FFD700"><b>1st Place: &nbsp Dimensionality </b></font><br/>
+                                    <!-- <b>Smooth Denoising for 3D Semantic Segmentation</b><br/> -->
+                                    <i>Jiacheng Deng, Xinjun Li, Jiahao Lu, and Tianzhu Zhang</i></p>
+                                </li>
+                                <br/>
+
+                            </ul>
+                                <b>Track 2:</b> 3D Instance Segmentation of Urban-scale Point Clouds.
+                                <ul>
+                                <br/>
+                                <li><font style="color:#FFD700"><b>1st Place: &nbsp USTC-IAT-United </b></font><br/>
+                                    <!-- <b>Mixed Point-based and Voxel-based Networks for 3D Point Cloud Processing</b><br/> -->
+                                    <i>Jun Yu, Ruiyu Liu, Zhen Kan, Gongpeng Zhao, Renda Li, Renjie Lu, Bingyuan Zhang, Shuoping Yang, Leilei Wang, Zhenchao Ouyang</i></p>
+                                </li>
+
+                                <li><font style="color:silver"><b>2nd Place: &nbsp PEACE </b></font><br/>
+                                    <!-- <b>Mask3D for 3D Semantic Instance Segmentation</b><br/> -->
+                                    <i>Ye Runchun, Lin Yin</i></p>
+                                </li>
+
+                                <li><font style="color:#B87333"><b>3rd Place: &nbsp NJUST-404 </b></font><br/>
+                                <!-- <b>A dual-function point cloud segmentation network</b><br/> -->
+                                <i>Zhipeng Zhou, Kailong Xu, Tianyang Qiu, Kelong Sheng</i></p>
+                                </li>
+                                </ul>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p><br/></p>
+
+
+
+                <div class="row">
+                    <div class="col-xs-12"><a class="anchor" id="organizers"></a>
+                        <h2>Organizers</h2>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-1"></div>
+                    <div class="col-xs-2">
+                        <a href="https://qingyonghu.github.io/">
+                            <img class="people-pic" src="2023/img/people/qingyong.jpg"/>
+                        </a>
+                        <div class="people-name">
+                            <a href="https://qingyonghu.github.io/">Qingyong Hu</a>
+                            <h6>University of Oxford</h6>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-2">
+                        <a href="https://www.linkedin.com/in/meida-chen-938a265b/">
+                            <img class="people-pic" src="2023/img/people/Meida.jpg"/>
+                        </a>
+                        <div class="people-name">
+                            <a href="https://www.linkedin.com/in/meida-chen-938a265b/">Meida Chen</a>
+                            <h6>University of Southern California - Institute for Creative Technologies</h6>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-2">
+                        <a href="https://scholar.google.com/citations?user=JKWxGfsAAAAJ">
+                            <img class="people-pic" src="2023/img/people/Andrew.jpg"/>
+                        </a>
+                        <div class="people-name">
+                            <a href="https://scholar.google.com/citations?user=JKWxGfsAAAAJ">Andrew Feng</a>
+                            <h6>University of Southern California - Institute for Creative Technologies</h6>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-2">
+                        <a href="https://uk.linkedin.com/in/fakharkhalid">
+                            <img class="people-pic" src="2023/img/people/Khalid_7.jpg"/>
+                        </a>
+                        <div class="people-name">
+                            <a href="https://uk.linkedin.com/in/fakharkhalid">Sheikh Khalid</a>
+                            <h6>Sensat LTD.</h6>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-2">
+                        <a href="https://yang7879.github.io/">
+                            <img class="people-pic" src="2023/img/people/BoYang.jpg"/>
+                        </a>
+                        <div class="people-name">
+                            <a href="https://yang7879.github.io/">Bo Yang</a>
+                            <h6>The Hong Kong Polytechnic University</h6>
+                        </div>
+                    </div>
+
+                <div class="col-xs-1"></div>
+                </div>
+
+                <p><br/></p>
+                <div class="row">
+                    <div class="col-xs-1"></div>
+
+                   <div class="col-xs-2">
+                        <a href="https://research.polyu.edu.hk/en/persons/bing-wang">
+                            <img class="people-pic" src="2023/img/people/BingWANG.jpg"/>
+                        </a>
+                        <div class="people-name">
+                            <a href="https://research.polyu.edu.hk/en/persons/bing-wang">Bing Wang</a>
+                            <h6>The Hong Kong Polytechnic University</h6>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-2">
+                        <a href="http://yulanguo.me/">
+                            <img class="people-pic" src="2023/img/people/yulan.jpg"/>
+                        </a>
+                        <div class="people-name">
+                            <a href="http://yulanguo.me/">Yulan Guo</a>
+                            <h6>National University of Defense Technology</h6>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-2">
+                        <a href="https://www.cs.bham.ac.uk/~leonarda/">
+                            <img class="people-pic" src="2023/img/people/al.jpg"/>
+                        </a>
+                        <div class="people-name">
+                            <a href="https://www.cs.bham.ac.uk/~leonarda/">Aleš Leonardis</a>
+                            <h6>University of Birmingham</h6>
+                        </div>
+                    </div>
+                    <div class="col-xs-2">
+                        <a href="https://www.cs.ox.ac.uk/people/niki.trigoni/">
+                            <img class="people-pic" src="2023/img/people/Niki.png"/>
+                        </a>
+                        <div class="people-name">
+                            <a href="https://www.cs.ox.ac.uk/people/niki.trigoni/">Niki Trigoni</a>
+                            <h6>University of Oxford</h6>
+                        </div>
+                    </div>
+                    <div class="col-xs-2">
+                        <a href="https://www.cs.ox.ac.uk/people/andrew.markham/">
+                            <img class="people-pic" src="2023/img/people/Andrew_markham.png"/>
+                        </a>
+                        <div class="people-name">
+                            <a href="https://www.cs.ox.ac.uk/people/andrew.markham/">Andrew Markham</a>
+                            <h6>University of Oxford</h6>
+                        </div>
+                    </div>
+
+
+                <div class="row">
+                    <div class="col-xs-12"><a class="anchor" id="sponsors"></a>
+                        <h2>Workshop sponsored by:</h2>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-4 sponsor">
+                        <a href="https://ict.usc.edu/"><img src="2023/img/USC_ICT_Logo.png"/></a>
+                    </div>
+
+
+                </div>
+                <p><br/></p>
+
+                <div class="row">
+                    <div class="col-xs-12"><a class="anchor" id="previous"></a>
+                        <h2>Previous years' workshops:</h2>
+                    </div>
+                </div>
+
+
+<!--             <font color="red"><b><a href="https://www.youtube.com/watch?v=egBFjbQH8CE" target="_blank">[Bilibili Live]</a></b></font>
+            <font color="red"><b><a href="https://www.youtube.com/live/9TJUuXU_fnI?feature=share" target="_blank">[YouTube Live]</a></b></font> -->
+
+                <div class="row">
+                    <div class="col-xs-12"><a class="anchor" id="previous"></a>
+                        <ul><li>
+                        <b>Urban3D@ICCV2021: </b> <font color="blue"><a href="https://urban3dchallenge.github.io/2021" target="_blank">https://urban3dchallenge.github.io/2021</a></font><font color="red"><b><a href="https://www.youtube.com/watch?v=egBFjbQH8CE" target="_blank">  [Replay]</a></b></font>
+                        </li></ul>
+                        <ul><li>
+                        <b>Urban3D@ECCV2022: </b> <font color="blue"><a href="https://urban3dchallenge.github.io/2022" target="_blank">https://urban3dchallenge.github.io/2022</a></font><font color="red"><b><a href="https://www.youtube.com/live/9TJUuXU_fnI?feature=share" target="_blank">  [Replay]</a></b></font>
+                        </li></ul>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <section class="u3d-institutions">
+
+  <div class="u3d-header">
+    <div class="u3d-eyebrow">Participating Institutions</div>
+    <h2 class="u3d-title">Trusted by researchers worldwide</h2>
+    <p class="u3d-subtitle">
+      Participants from <strong>100+ institutions</strong> across <strong>20+ countries</strong> — universities, research labs, and industry
+    </p>
+  </div>
+
+  <!-- Row 1: International top + industry -->
+  <div class="u3d-track-wrap">
+    <div class="u3d-track row1"><div class="chip">
+      <span class="chip-icon ic-blue">OX</span>
+      <span class="chip-name">University of Oxford</span>
+      <span class="chip-region">UK</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-red">CMU</span>
+      <span class="chip-name">Carnegie Mellon University</span>
+      <span class="chip-region">US</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-blue">UCL</span>
+      <span class="chip-name">UCLA</span>
+      <span class="chip-region">US</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-slate">JHU</span>
+      <span class="chip-name">Johns Hopkins University</span>
+      <span class="chip-region">US</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-blue">ICL</span>
+      <span class="chip-name">Imperial College London</span>
+      <span class="chip-region">UK</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-purple">UCL</span>
+      <span class="chip-name">University College London</span>
+      <span class="chip-region">UK</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-amber">USC</span>
+      <span class="chip-name">Univ. of Southern California</span>
+      <span class="chip-region">US</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-red">NTU</span>
+      <span class="chip-name">NTU Singapore</span>
+      <span class="chip-region">SG</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-blue">TUD</span>
+      <span class="chip-name">TU Delft</span>
+      <span class="chip-region">NL</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-teal">UvA</span>
+      <span class="chip-name">Univ. of Amsterdam</span>
+      <span class="chip-region">NL</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-indigo">KAI</span>
+      <span class="chip-name">KAIST</span>
+      <span class="chip-region">KR</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-slate">SNU</span>
+      <span class="chip-name">Seoul National University</span>
+      <span class="chip-region">KR</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-blue">YSI</span>
+      <span class="chip-name">Yonsei University</span>
+      <span class="chip-region">KR</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-amber">KAU</span>
+      <span class="chip-name">KAUST</span>
+      <span class="chip-region">SA</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-red">TIT</span>
+      <span class="chip-name">Tokyo Tech</span>
+      <span class="chip-region">JP</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-blue">UoM</span>
+      <span class="chip-name">Univ. of Melbourne</span>
+      <span class="chip-region">AU</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-teal">IIT</span>
+      <span class="chip-name">IIT Madras</span>
+      <span class="chip-region">IN</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-red">UoB</span>
+      <span class="chip-name">Univ. of Bristol</span>
+      <span class="chip-region">UK</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-purple">YRK</span>
+      <span class="chip-name">York University</span>
+      <span class="chip-region">CA</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-blue">BDU</span>
+      <span class="chip-name">Baidu</span>
+      <span class="chip-region">Industry</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-amber">ALI</span>
+      <span class="chip-name">Alibaba</span>
+      <span class="chip-region">Industry</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-slate">BYT</span>
+      <span class="chip-name">ByteDance</span>
+      <span class="chip-region">Industry</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-blue">INT</span>
+      <span class="chip-name">Intel</span>
+      <span class="chip-region">Industry</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-red">SAI</span>
+      <span class="chip-name">SAIC Motor</span>
+      <span class="chip-region">Industry</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-teal">MTN</span>
+      <span class="chip-name">Meituan</span>
+      <span class="chip-region">Industry</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-blue">OX</span>
+      <span class="chip-name">University of Oxford</span>
+      <span class="chip-region">UK</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-red">CMU</span>
+      <span class="chip-name">Carnegie Mellon University</span>
+      <span class="chip-region">US</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-blue">UCL</span>
+      <span class="chip-name">UCLA</span>
+      <span class="chip-region">US</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-slate">JHU</span>
+      <span class="chip-name">Johns Hopkins University</span>
+      <span class="chip-region">US</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-blue">ICL</span>
+      <span class="chip-name">Imperial College London</span>
+      <span class="chip-region">UK</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-purple">UCL</span>
+      <span class="chip-name">University College London</span>
+      <span class="chip-region">UK</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-amber">USC</span>
+      <span class="chip-name">Univ. of Southern California</span>
+      <span class="chip-region">US</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-red">NTU</span>
+      <span class="chip-name">NTU Singapore</span>
+      <span class="chip-region">SG</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-blue">TUD</span>
+      <span class="chip-name">TU Delft</span>
+      <span class="chip-region">NL</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-teal">UvA</span>
+      <span class="chip-name">Univ. of Amsterdam</span>
+      <span class="chip-region">NL</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-indigo">KAI</span>
+      <span class="chip-name">KAIST</span>
+      <span class="chip-region">KR</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-slate">SNU</span>
+      <span class="chip-name">Seoul National University</span>
+      <span class="chip-region">KR</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-blue">YSI</span>
+      <span class="chip-name">Yonsei University</span>
+      <span class="chip-region">KR</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-amber">KAU</span>
+      <span class="chip-name">KAUST</span>
+      <span class="chip-region">SA</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-red">TIT</span>
+      <span class="chip-name">Tokyo Tech</span>
+      <span class="chip-region">JP</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-blue">UoM</span>
+      <span class="chip-name">Univ. of Melbourne</span>
+      <span class="chip-region">AU</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-teal">IIT</span>
+      <span class="chip-name">IIT Madras</span>
+      <span class="chip-region">IN</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-red">UoB</span>
+      <span class="chip-name">Univ. of Bristol</span>
+      <span class="chip-region">UK</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-purple">YRK</span>
+      <span class="chip-name">York University</span>
+      <span class="chip-region">CA</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-blue">BDU</span>
+      <span class="chip-name">Baidu</span>
+      <span class="chip-region">Industry</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-amber">ALI</span>
+      <span class="chip-name">Alibaba</span>
+      <span class="chip-region">Industry</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-slate">BYT</span>
+      <span class="chip-name">ByteDance</span>
+      <span class="chip-region">Industry</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-blue">INT</span>
+      <span class="chip-name">Intel</span>
+      <span class="chip-region">Industry</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-red">SAI</span>
+      <span class="chip-name">SAIC Motor</span>
+      <span class="chip-region">Industry</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-teal">MTN</span>
+      <span class="chip-name">Meituan</span>
+      <span class="chip-region">Industry</span>
+    </div></div>
+  </div>
+
+  <!-- Row 2: Chinese top schools + CAS -->
+  <div class="u3d-track-wrap">
+    <div class="u3d-track row2"><div class="chip">
+      <span class="chip-icon ic-purple">THU</span>
+      <span class="chip-name">Tsinghua University</span>
+      <span class="chip-region">清华</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-red">PKU</span>
+      <span class="chip-name">Peking University</span>
+      <span class="chip-region">北大</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-blue">FDU</span>
+      <span class="chip-name">Fudan University</span>
+      <span class="chip-region">复旦</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-red">SJT</span>
+      <span class="chip-name">Shanghai Jiao Tong Univ.</span>
+      <span class="chip-region">上交大</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-blue">ZJU</span>
+      <span class="chip-name">Zhejiang University</span>
+      <span class="chip-region">浙大</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-teal">UST</span>
+      <span class="chip-name">USTC</span>
+      <span class="chip-region">中科大</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-amber">WHU</span>
+      <span class="chip-name">Wuhan University</span>
+      <span class="chip-region">武大</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-blue">HIT</span>
+      <span class="chip-name">Harbin Inst. of Technology</span>
+      <span class="chip-region">哈工大</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-purple">NJU</span>
+      <span class="chip-name">Nanjing University</span>
+      <span class="chip-region">南大</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-teal">SEU</span>
+      <span class="chip-name">Southeast University</span>
+      <span class="chip-region">东南</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-blue">TON</span>
+      <span class="chip-name">Tongji University</span>
+      <span class="chip-region">同济</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-purple">CUH</span>
+      <span class="chip-name">CUHK</span>
+      <span class="chip-region">港中文</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-blue">UST</span>
+      <span class="chip-name">HKUST</span>
+      <span class="chip-region">港科大</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-teal">HKU</span>
+      <span class="chip-name">HKU</span>
+      <span class="chip-region">港大</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-red">POL</span>
+      <span class="chip-name">PolyU Hong Kong</span>
+      <span class="chip-region">港理工</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-blue">BUH</span>
+      <span class="chip-name">Beihang University</span>
+      <span class="chip-region">北航</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-slate">NDT</span>
+      <span class="chip-name">NUDT</span>
+      <span class="chip-region">国防科大</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-indigo">XDU</span>
+      <span class="chip-name">Xidian University</span>
+      <span class="chip-region">西电</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-rose">NWP</span>
+      <span class="chip-name">Northwestern Polytechnical</span>
+      <span class="chip-region">西工大</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-green">CAS</span>
+      <span class="chip-name">Chinese Academy of Sciences</span>
+      <span class="chip-region">中科院</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-teal">NLP</span>
+      <span class="chip-name">NLPR / CASIA</span>
+      <span class="chip-region">自动化所</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-amber">CUG</span>
+      <span class="chip-name">China Univ. of Geosciences</span>
+      <span class="chip-region">地大</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-red">NEU</span>
+      <span class="chip-name">Northeastern Univ. China</span>
+      <span class="chip-region">东北大</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-cyan">NUI</span>
+      <span class="chip-name">NUIST</span>
+      <span class="chip-region">南信大</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-purple">SCU</span>
+      <span class="chip-name">Sichuan University</span>
+      <span class="chip-region">川大</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-blue">TJU</span>
+      <span class="chip-name">Tianjin University</span>
+      <span class="chip-region">天大</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-purple">THU</span>
+      <span class="chip-name">Tsinghua University</span>
+      <span class="chip-region">清华</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-red">PKU</span>
+      <span class="chip-name">Peking University</span>
+      <span class="chip-region">北大</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-blue">FDU</span>
+      <span class="chip-name">Fudan University</span>
+      <span class="chip-region">复旦</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-red">SJT</span>
+      <span class="chip-name">Shanghai Jiao Tong Univ.</span>
+      <span class="chip-region">上交大</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-blue">ZJU</span>
+      <span class="chip-name">Zhejiang University</span>
+      <span class="chip-region">浙大</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-teal">UST</span>
+      <span class="chip-name">USTC</span>
+      <span class="chip-region">中科大</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-amber">WHU</span>
+      <span class="chip-name">Wuhan University</span>
+      <span class="chip-region">武大</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-blue">HIT</span>
+      <span class="chip-name">Harbin Inst. of Technology</span>
+      <span class="chip-region">哈工大</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-purple">NJU</span>
+      <span class="chip-name">Nanjing University</span>
+      <span class="chip-region">南大</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-teal">SEU</span>
+      <span class="chip-name">Southeast University</span>
+      <span class="chip-region">东南</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-blue">TON</span>
+      <span class="chip-name">Tongji University</span>
+      <span class="chip-region">同济</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-purple">CUH</span>
+      <span class="chip-name">CUHK</span>
+      <span class="chip-region">港中文</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-blue">UST</span>
+      <span class="chip-name">HKUST</span>
+      <span class="chip-region">港科大</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-teal">HKU</span>
+      <span class="chip-name">HKU</span>
+      <span class="chip-region">港大</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-red">POL</span>
+      <span class="chip-name">PolyU Hong Kong</span>
+      <span class="chip-region">港理工</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-blue">BUH</span>
+      <span class="chip-name">Beihang University</span>
+      <span class="chip-region">北航</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-slate">NDT</span>
+      <span class="chip-name">NUDT</span>
+      <span class="chip-region">国防科大</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-indigo">XDU</span>
+      <span class="chip-name">Xidian University</span>
+      <span class="chip-region">西电</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-rose">NWP</span>
+      <span class="chip-name">Northwestern Polytechnical</span>
+      <span class="chip-region">西工大</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-green">CAS</span>
+      <span class="chip-name">Chinese Academy of Sciences</span>
+      <span class="chip-region">中科院</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-teal">NLP</span>
+      <span class="chip-name">NLPR / CASIA</span>
+      <span class="chip-region">自动化所</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-amber">CUG</span>
+      <span class="chip-name">China Univ. of Geosciences</span>
+      <span class="chip-region">地大</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-red">NEU</span>
+      <span class="chip-name">Northeastern Univ. China</span>
+      <span class="chip-region">东北大</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-cyan">NUI</span>
+      <span class="chip-name">NUIST</span>
+      <span class="chip-region">南信大</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-purple">SCU</span>
+      <span class="chip-name">Sichuan University</span>
+      <span class="chip-region">川大</span>
+    </div><div class="chip">
+      <span class="chip-icon ic-blue">TJU</span>
+      <span class="chip-name">Tianjin University</span>
+      <span class="chip-region">天大</span>
+    </div></div>
+  </div>
+
+  <div class="u3d-stats">
+    <div class="u3d-stat">
+      <div class="u3d-stat-n">2800+</div>
+      <div class="u3d-stat-l">Download requests</div>
+    </div>
+    <div class="u3d-stat-sep"></div>
+    <div class="u3d-stat">
+      <div class="u3d-stat-n">100+</div>
+      <div class="u3d-stat-l">Institutions</div>
+    </div>
+    <div class="u3d-stat-sep"></div>
+    <div class="u3d-stat">
+      <div class="u3d-stat-n">20+</div>
+      <div class="u3d-stat-l">Countries &amp; regions</div>
+    </div>
+    <div class="u3d-stat-sep"></div>
+    <div class="u3d-stat">
+      <div class="u3d-stat-n">3</div>
+      <div class="u3d-stat-l">Challenge editions</div>
+    </div>
+  </div>
+
+</section>
+
+        <hr>
+        <div class="section text-gray" id="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-14" style="text-align:right;">
+                        <small>This work is sponsored by the U.S. Army Research Laboratory (ARL) under contract number W911NF-14-D-0005. Statements, expressed opinions, and content included do not necessarily reflect the position or the policy of the Government, and no official endorsement should be inferred.</small>
+                    </div>
+                    <br><br>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+        <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+</body>
+</html>
