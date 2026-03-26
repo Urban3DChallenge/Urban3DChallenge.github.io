@@ -45,6 +45,14 @@ Each year's page is self-contained with embedded styles and references shared as
 ### Navigation
 Year navigation header (`#year-header`) allows switching between editions. Main navbar (`#navbar-main`) contains anchor links to sections.
 
+## Repository Account
+
+**Important:** This repository uses a dedicated GitHub account for the Urban3D Challenge, separate from personal accounts:
+- **GitHub username:** `Urban3DChallenge`
+- **Email:** `gfkdhuqingyong@gmail.com`
+
+When committing or pushing changes, use this account's credentials.
+
 ## Development
 
 ### Local Preview
