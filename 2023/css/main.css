@@ -352,3 +352,209 @@ div.paper i.fas {
 		font-size: 13px;
 	}
 }
+
+/* ====================================================
+   VISUAL UPGRADE
+   ==================================================== */
+
+/* ── Page content top padding (replaces first <p><br/></p>) ── */
+.page-content {
+  padding-top: 2rem;
+}
+
+/* ── H2 accent underline ── */
+.page-content h2,
+section h2:not(.u3d-title) {
+  margin-bottom: 20px;
+}
+
+.page-content h2::after,
+section h2:not(.u3d-title)::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 3px;
+  background: #5B7FDE;
+  margin-top: 10px;
+  border-radius: 2px;
+}
+
+/* ── Navbar hover underline (expands from center) ── */
+.navbar-nav > li > a {
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.navbar-nav > li > a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: #5B7FDE;
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
+.navbar-nav > li > a:hover::after,
+.navbar-nav > li > a:focus::after {
+  width: 100%;
+  left: 0;
+}
+
+@media (max-width: 767px) {
+  .navbar-nav > li > a::after {
+    display: none;
+  }
+}
+
+/* ── People avatar hover ── */
+.people-pic {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+@media (hover: hover) {
+  .people-pic:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  }
+}
+
+/* ── Panel hover lift ── */
+.panel {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+@media (hover: hover) {
+  .panel:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  }
+}
+
+/* ── Sponsor logo grayscale-to-color ── */
+.sponsor img {
+  filter: grayscale(100%);
+  opacity: 0.7;
+  transition: filter 0.4s ease, opacity 0.4s ease;
+}
+
+@media (hover: hover) {
+  .sponsor img:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+  }
+}
+
+/* ── Table row hover ── */
+.table-striped > tbody > tr {
+  transition: background-color 0.3s ease;
+}
+
+@media (hover: hover) {
+  .table-striped > tbody > tr:hover {
+    background-color: rgba(91, 127, 222, 0.06);
+  }
+}
+
+/* ── Teaser image polish ── */
+.page-content > .row:first-child img.img-fluid {
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* ── Scroll fade-in ── */
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Section spacing (replaces <p><br/></p> hacks) ── */
+.page-content > .row {
+  margin-bottom: 2rem;
+}
+
+.page-content > .row:last-child {
+  margin-bottom: 0;
+}
+
+/* Gap between consecutive inner rows (organizer photo rows, etc.) */
+.page-content .row .col-xs-12 > .row + .row {
+  margin-top: 1.5rem;
+}
+
+/* ── Professional footer ── */
+.site-footer {
+  background: #111827;
+  padding: 3rem 0 1.5rem;
+  color: #9CA3AF;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.site-footer h5 {
+  color: #F9FAFB;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  letter-spacing: -0.01em;
+}
+
+.site-footer a {
+  color: #9CA3AF;
+  border-bottom: none;
+  transition: color 0.3s ease;
+}
+
+.site-footer a:hover {
+  color: #F9FAFB;
+}
+
+.site-footer .footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.site-footer .footer-links li {
+  margin-bottom: 0.5rem;
+}
+
+.site-footer .footer-links li a::before {
+  content: '\2192';
+  margin-right: 6px;
+  font-size: 12px;
+}
+
+.site-footer .footer-divider {
+  border: 0;
+  border-top: 1px solid #1F2937;
+  margin: 2rem 0 1rem;
+}
+
+.site-footer .footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.site-footer .footer-bottom small {
+  color: #6B7280;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+@media (max-width: 767px) {
+  .site-footer .footer-bottom {
+    flex-direction: column;
+  }
+}

@@ -101,6 +101,11 @@
         transition: .5s;
     }
 
+    #year-header ul li a.active {
+        background: #5B7FDE;
+        color: #fff;
+    }
+
   /* ── Participating Institutions Section ── */
   *, *::before, *::after { box-sizing: border-box; }
 
@@ -326,16 +331,14 @@
 
 <div class="container">
     <div class="page-content">
-        <p><br/></p>
-        <div class="row">
+        <div class="row fade-in-section">
             <div class="col-xs-12">
                 <img class="img-fluid" src="2023/img/Teaser.png"/>
 
             </div>
         </div>
-        <p><br/></p>
 
-        <div class="row">
+        <div class="row fade-in-section">
             <div class="col-xs-12"><a class="anchor" id="intro"></a>
                 <h2>Introduction</h2>
             </div>
@@ -398,12 +401,12 @@
                 We will be hosting 3 invited speakers and holding 2 parallel challenges (i.e., semantic and instance segmentation), and 1 panel discussion session for the topic of point cloud segmentation. More information will be provided as soon as possible.
 
                 <!-- CodaBench Migration Alert -->
-                <div style="background-color: #fff3cd; border: 3px solid #dc3545; border-radius: 10px; padding: 1.5rem; margin: 2rem 0 1rem 0;">
+                <div style="background-color: #fffbeb; border-left: 5px solid #dc3545; border-radius: 6px; padding: 1.5rem 2rem; margin: 2rem 0 1rem 0; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
                     <div style="display: flex; align-items: start; gap: 1rem;">
-                        <span style="font-size: 2.5rem; color: #dc3545; flex-shrink: 0;">⚠️</span>
+                        <span style="font-size: 2rem; color: #dc3545; flex-shrink: 0; line-height: 1;">⚠️</span>
                         <div>
-                            <strong style="color: #dc3545; font-size: 1.5rem; font-weight: bold;">Important Notice: Competition Platform Migration</strong>
-                            <p style="margin: 0.8rem 0 0 0; color: #856404; font-size: 1.15rem; line-height: 1.6;">
+                            <strong style="color: #dc3545; font-size: 1.75rem; font-weight: 700; line-height: 1.3;">Important Notice: Competition Platform Migration</strong>
+                            <p style="margin: 0.8rem 0 0 0; color: #92400e; font-size: 1.2rem; line-height: 1.7;">
                                 Due to CodaLab platform updates, the Urban3D Challenge competition has been migrated to a new platform.
                                 Please visit the new competition site at:
                                 <a href="https://www.codabench.org/competitions/15137/" target="_blank" style="color: #dc3545; font-weight: bold; text-decoration: underline;">CodaBench Competition Page</a>
@@ -413,9 +416,8 @@
                 </div>
             </div>
         </div>
-        <p><br/></p>
 
-        <div class="row">
+        <div class="row fade-in-section">
             <div class="col-xs-12 panel-group"><a class="anchor" id="calls"></a>
                 <h2>Call for Contributions</h2>
 
@@ -491,12 +493,10 @@
                 </div>
             </div>
         </div>
-        <p><br/></p>
 
-        <div class="row">
+        <div class="row fade-in-section">
             <div class="col-xs-12"><a class="anchor" id="dates"></a>
                 <h2>Important Dates</h2>
-                <br/>
                 <table class="table table-striped">
                     <tbody>
                     <tr>
@@ -527,12 +527,10 @@
                 </table>
             </div>
         </div>
-        <p><br/></p>
 
-        <div class="row">
+        <div class="row fade-in-section">
             <div class="col-xs-12"><a class="anchor" id="dates"></a>
                 <h2>Preliminary Program Outline</h2>
-                <br/>
                 <table class="table table-striped">
                     <tbody>
                     <tr>
@@ -579,13 +577,11 @@
                 </table>
             </div>
         </div>
-        <p><br/></p>
 
 
-    <div class="row">
+    <div class="row fade-in-section">
         <div class="col-xs-12"><a class="anchor" id="speakers"></a>
             <h2>Invited Keynote Speakers</h2>
-            <br/>
             <div class="row speaker">
                 <div class="col-sm-3 speaker-pic">
                     <a href="https://www.ucl.ac.uk/bartlett/casa/prof-michael-batty">
@@ -723,7 +719,7 @@
                     </div>
                 </div>
 
-        <div class="row">
+        <div class="row fade-in-section">
             <div class="col-xs-12 panel-group"><a class="anchor" id="Awards"></a>
                 <h2>Awards</h2>
                 <div class="panel panel-default">
@@ -771,7 +767,6 @@
                 </div>
             </div>
         </div>
-        <p><br/></p>
 
 
 
@@ -836,7 +831,6 @@
                 <div class="col-xs-1"></div>
                 </div>
 
-                <p><br/></p>
                 <div class="row">
                     <div class="col-xs-1"></div>
 
@@ -902,7 +896,6 @@
 
 
                 </div>
-                <p><br/></p>
 
                 <div class="row">
                     <div class="col-xs-12"><a class="anchor" id="previous"></a>
@@ -929,7 +922,7 @@
             </div>
         </div>
 
-        <section class="u3d-institutions">
+        <section class="u3d-institutions fade-in-section">
 
   <div class="u3d-header">
     <div class="u3d-eyebrow">Participating Institutions</div>
@@ -1381,9 +1374,7 @@
 
 </section>
 
-<p><br/></p>
-
-<section class="section" id="contact">
+<section class="section fade-in-section" id="contact">
     <div class="container">
         <h2>Contact Us</h2>
         <div class="row" style="margin-top: 2rem;">
@@ -1416,24 +1407,62 @@
     </div>
 </section>
 
-        <hr>
-        <div class="section text-gray" id="footer">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-14" style="text-align:right;">
-                        <small>This work is sponsored by the U.S. Army Research Laboratory (ARL) under contract number W911NF-14-D-0005. Statements, expressed opinions, and content included do not necessarily reflect the position or the policy of the Government, and no official endorsement should be inferred.</small>
-                    </div>
-                    <br><br>
-                </div>
-                <div class="row">
-                    <div class="col-sm-14" style="text-align:center;">
-                        <small style="color: #999;">&copy; 2023-2026 Urban3D Challenge &mdash; Developed by Qingyong Hu</small>
-                    </div>
-                </div>
+<footer class="site-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <h5>Urban3D Challenge</h5>
+                <p style="margin: 0;">Advancing large-scale 3D point cloud analysis for urban scene understanding through open benchmarks and community challenges.</p>
+            </div>
+            <div class="col-sm-4">
+                <h5>Quick Links</h5>
+                <ul class="footer-links">
+                    <li><a href="https://github.com/QingyongHu/SensatUrban" target="_blank">GitHub (SensatUrban)</a></li>
+                    <li><a href="https://github.com/meidachen/STPLS3D" target="_blank">GitHub (STPLS3D)</a></li>
+                    <li><a href="https://www.codabench.org/competitions/15137/" target="_blank">CodaBench Competition</a></li>
+                    <li><a href="http://point-cloud-analysis.cs.ox.ac.uk/" target="_blank">SensatUrban Dataset</a></li>
+                    <li><a href="https://www.stpls3d.com" target="_blank">STPLS3D Dataset</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-4">
+                <h5>Previous Editions</h5>
+                <ul class="footer-links">
+                    <li><a href="https://urban3dchallenge.github.io/2021" target="_blank">Urban3D @ ICCV 2021</a></li>
+                    <li><a href="https://urban3dchallenge.github.io/2022" target="_blank">Urban3D @ ECCV 2022</a></li>
+                </ul>
             </div>
         </div>
+        <hr class="footer-divider">
+        <div class="footer-bottom">
+            <small>This work is sponsored by the U.S. Army Research Laboratory (ARL) under contract number W911NF-14-D-0005. Statements, expressed opinions, and content included do not necessarily reflect the position or the policy of the Government, and no official endorsement should be inferred.</small>
+            <small>&copy; 2023-2026 Urban3D Challenge &mdash; Developed by Qingyong Hu</small>
+        </div>
+    </div>
+</footer>
 
         <script type="text/javascript" src="/static/js/jquery.min.js"></script>
         <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+        <script>
+          document.addEventListener('DOMContentLoaded', function() {
+            var sections = document.querySelectorAll('.fade-in-section');
+            if ('IntersectionObserver' in window) {
+              var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                  if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                  }
+                });
+              }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+              sections.forEach(function(section) {
+                observer.observe(section);
+              });
+            } else {
+              sections.forEach(function(section) {
+                section.classList.add('is-visible');
+              });
+            }
+          });
+        </script>
 </body>
 </html>
